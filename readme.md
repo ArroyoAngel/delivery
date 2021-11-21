@@ -1,8 +1,8 @@
 # INSTALACION
-ionic start
+ionic serve
 
 # EJECUCION
-ionic start
+ionic serve
 
 # PAQUETES GLOBALES
 npm install -g @ionic/cli
