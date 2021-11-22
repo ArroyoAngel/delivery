@@ -86,12 +86,14 @@
             email: this.email, 
             password: this.password,
           }
-        )
-        alert("USUARIO REGISTRADO")
+        ).then((response)=>{
+          alert(response.message)
+        })
       },
       async onSubmitToGoogle(){
-        alert("USUARIO REGISTRADO")
-        await Client.register("google")
+        await Client.register("google").then((response)=>{
+          alert(response.message)
+        })
       }
     }
   }

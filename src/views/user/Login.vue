@@ -10,7 +10,7 @@
       <ion-card-content>
         <ion-item>
           <ion-label  position="floating">Correo:</ion-label>
-          <ion-input placeholder="example@example.com" @input="username=$event.target.value" type="email"/>
+          <ion-input placeholder="example@example.com" @input="email=$event.target.value" type="email"/>
         </ion-item>
         <ion-item>
           <ion-label  position="floating">Contraseña:</ion-label>
@@ -35,15 +35,17 @@ export default {
   name: "Login",
   data(){
     return {
-      username: '',
+      email: '',
       password: '',
     }
   },
   methods: {
     async onSubmit(){
-      Client.authRegisterByEmail({
-        username: this.username,
+      await Client.authLoginByEmail({
+        email: this.email,
         password: this.password
+      }).then((result)=>{
+        alert(result.message)
       })
     },
   }

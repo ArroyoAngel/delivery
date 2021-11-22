@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, addDoc, setDoc, collection, doc, getDoc, getDocs, updateDoc } from 'firebase/firestore/lite';
-import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
+import FirebaseResponse from '@/helpers/reponse'
 
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
@@ -78,26 +79,36 @@ export class Firebase {
     *   LOGOUT
 */
     async authRegisterByEmail(email: string, password: string): Promise<any>{
-        let result: any = null
-        console.log(email, password)
         await createUserWithEmailAndPassword(this.auth, email, password)
         .then((userCredential) => {
-            result = userCredential.user
+            FirebaseResponse.register(false, userCredential)
         })
         .catch((error) => {
-            result = error
+            FirebaseResponse.register(true, error)
         });
-        return result
+        return FirebaseResponse
     }
+    
     async authRegisterByProviderGoogle(): Promise<any>{
-        let result: any = null
         await signInWithPopup(this.auth, this.provider)
         .then((userCredential) => {
-            result = userCredential.user
+            FirebaseResponse.register(false, userCredential)
         }).catch((error) => {
-            result = error
+            FirebaseResponse.register(true, error)
         });
-        return result
+        return FirebaseResponse
+    }
+    async authRegisterByPhoneNumber(): Promise<any>{
+        return null
+    }
+    async authLoginByEmail(email: string, password: string): Promise<any>{
+        await signInWithEmailAndPassword(this.auth, email, password)
+        .then((userCredential: any) => {
+            FirebaseResponse.login(false, userCredential)
+        }).catch((error)=>{
+            FirebaseResponse.login(true, error)
+        })
+        return FirebaseResponse
     }
 }
 

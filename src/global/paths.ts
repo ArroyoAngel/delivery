@@ -1,0 +1,5 @@
+export const LOGIN_PATH = "/user/login"
+export const REGISTER_PATH = "/user/register"
+export const APP_PATH = "/app/"
+export const APP_USERS_PATH = APP_PATH + "users"
+export const APP_UPDATE_PATH = APP_PATH + "update/"

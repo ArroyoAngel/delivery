@@ -5,17 +5,18 @@ export default class Account {
     constructor(){
         this.firebase = new Firebase()
     }
+
+
     authRegisterByEmail(account: any): any{
         return this.firebase.authRegisterByEmail(account.email, account.password)
     }
     authRegisterByProviderGoogle(): any {
         return this.firebase.authRegisterByProviderGoogle()
     }
-
-    /*login(): void{
-
+    authLoginByEmail(account: any): any{
+        return this.firebase.authLoginByEmail(account.email, account.password)
     }
-    logout(): void{
+    /*logout(): void{
 
     }
     delete(): void{

@@ -25,6 +25,7 @@ export class Client extends Account{
                 break
         }
         this.firebase.registerDocument("clients", payload, credential.uid)
+        return credential
     }
     async getAll(): Promise<Array<any>>{
         const result = await this.firebase.getCollection("clients")
