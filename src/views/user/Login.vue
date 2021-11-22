@@ -1,8 +1,7 @@
 <template>
-  <ion-page>
-    <ion-row>
-      <ion-col size-sm="3" size-xs="0"></ion-col>
-        <ion-col size-sm="6" size-xs="12">
+  <ion-page style="justify-content: center">
+    <ion-row align-items-center>
+        <ion-col size-xl="4" size-sm="6" offset-xl="4" offset-sm="3" size-xs="12">
           <form  >
           <ion-card>
             <ion-card-header align="center">
@@ -19,26 +18,29 @@
               </ion-item>
             </ion-card-content>
             <ion-card-content align="center">
-              <ion-button type="button" @click="onSubmit">Entrar</ion-button>
-              <ion-button type="button" >Google</ion-button>
-              <ion-router-link>¿Ház olvidado tu contraseña?</ion-router-link>
-              <ion-button type="button" @click="onRegister">Registrarse</ion-button>
+              <ion-button type="button" @click="onSubmit"><span>Entrar</span></ion-button><br>
+              <ion-button type="button" >
+                <img class="icon-google" src="@/assets/icon-google.png">
+                <span>Google</span>
+              </ion-button><br>
+              <ion-router-link>¿Ház olvidado tu contraseña?</ion-router-link><br>
+              <ion-router-link @click="onRegister">Registrar una nueva cuenta.</ion-router-link><br>
             </ion-card-content>
           </ion-card>
           </form>
         </ion-col>
-      <ion-col size-sm="3"></ion-col>
     </ion-row>
   </ion-page>
 </template>
 <script>
-import { IonPage } from '@ionic/vue';
+import { IonPage, IonButton } from '@ionic/vue';
 import Client from '@/model/Client'
 import { REGISTER_PATH } from '@/global/paths'
 export default {
   name: "Login",
   components: {
     IonPage,
+    IonButton
   },
   data(){
     return {
@@ -62,3 +64,17 @@ export default {
   }
 }
 </script>
+<style scoped>
+  .icon-google{
+    width: 30px !important;
+    height: 30px !important;
+  }
+  ion-router-link:hover{
+    cursor: pointer;
+    color: var(--ion-color-primary-shade)
+  }
+  span{
+    font-weight: bold;
+    color: var(--ion-color-light-tint);
+  }
+</style>
