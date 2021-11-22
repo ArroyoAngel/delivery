@@ -45,9 +45,13 @@
 </template>
 <script>
   //import { createAccountByEmail } from '@/helpers/firebase'
+  import { IonPage } from '@ionic/vue'
   import Client from '@/model/Client'
   export default {
     name: 'Register',
+    components: {
+      IonPage,
+    },
     data(){
       return {
         name: '',
